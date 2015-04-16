@@ -10,9 +10,10 @@ module GlyphHelper
   # # => <span class="icon-lock"></span>
   def glyph(*names)
     options = (names.last.kind_of?(Hash)) ? names.pop : {}
+    names = [*names]
     names.map! { |name| name.to_s.gsub('_','-') }
     names.map! do |name|
-      name =~ /pull-(?:left|right)/ ? name : "glyphicon glyphicon-#{name}"
+      name =~ /pull-(?:left|right)/ ? name : "fa fa-#{name}"
     end
     options[:tag] = options[:tag] ||= :i
     content_tag options[:tag], nil, :class => names
